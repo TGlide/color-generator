@@ -1,4 +1,5 @@
 <script context="module" lang="ts">
+	import ThemeSwitch from '$lib/components/ThemeSwitch.svelte';
 	import Box from '$lib/UI/Box.svelte';
 	import Flex from '$lib/UI/Flex.svelte';
 	import Grid from '$lib/UI/Grid.svelte';
@@ -13,13 +14,16 @@
 </svelte:head>
 
 <section id="colors">
-	<h3>Palette</h3>
+	<Flex gap={16} align="center">
+		<h3>Palette</h3>
+		<ThemeSwitch />
+	</Flex>
 
 	<Grid gap={32} templateColumns="repeat(10, 1fr)" mt={16}>
 		{#each objectKeys(theme.palette) as key}
 			<Flex mt={8} direction="column" gap={6}>
 				<Box bgColor={key} size={64} radius={6} />
-				<h4>{key}</h4>
+				<span>{key}</span>
 			</Flex>
 		{/each}
 	</Grid>
@@ -28,5 +32,9 @@
 <style>
 	section {
 		padding: 1rem;
+	}
+
+	#colors h3 {
+		font-size: 2rem;
 	}
 </style>
