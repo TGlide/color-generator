@@ -32,7 +32,7 @@
 		return vars;
 	};
 
-	$: cssVars = parsedColor ? getCssVars(h, s, name) : null;
+	$: cssVars = getCssVars(h, s, name);
 </script>
 
 <svelte:head>
