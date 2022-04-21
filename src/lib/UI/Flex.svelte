@@ -32,7 +32,7 @@
 </script>
 
 <div
-	class="flex-wrapper"
+	class="wrapper"
 	class:direction={$$props.direction}
 	class:wrap={$$props.wrap}
 	class:justify={$$props.justify}
@@ -45,31 +45,31 @@
 </div>
 
 <style>
-	.flex-wrapper {
+	.wrapper {
 		display: contents;
 	}
 
-	.flex-wrapper > :global(div) {
+	.wrapper > :global(*) {
 		display: flex;
 	}
 
-	.flex-wrapper.direction > :global(div) {
+	.wrapper.direction > :global(*) {
 		flex-direction: var(--direction);
 	}
 
-	.flex-wrapper.wrap > :global(div) {
+	.wrapper.wrap > :global(*) {
 		flex-wrap: var(--wrap);
 	}
 
-	.flex-wrapper.justify > :global(div) {
+	.wrapper.justify > :global(*) {
 		justify-content: var(--justify);
 	}
 
-	.flex-wrapper.align > :global(div) {
+	.wrapper.align > :global(*) {
 		align-items: var(--align);
 	}
 
-	.flex-wrapper.gap > :global(div) {
+	.wrapper.gap > :global(*) {
 		gap: var(--gap);
 	}
 </style>

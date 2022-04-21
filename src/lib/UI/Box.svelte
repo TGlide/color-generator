@@ -30,6 +30,8 @@
 		opacity?: number;
 
 		style?: string;
+
+		tag?: string;
 	};
 
 	export const pxToRem = (px: number) => {
@@ -64,6 +66,8 @@
 
 <script lang="ts">
 	interface $$Props extends BoxProps {}
+
+	export let tag: $$Props['tag'] = 'div';
 
 	const getStyle = (props: BoxProps) => {
 		return [
@@ -105,7 +109,8 @@
 	$: style = getStyle($$props);
 </script>
 
-<div
+<svelte:element
+	this={tag}
 	{style}
 	class:m={$$props.m}
 	class:mt={$$props.mt}
@@ -130,7 +135,7 @@
 	class:opacity={$$props.opacity}
 >
 	<slot />
-</div>
+</svelte:element>
 
 <style>
 	.m {

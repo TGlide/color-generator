@@ -3,6 +3,7 @@
 	import Box from '$lib/UI/Box.svelte';
 	import Flex from '$lib/UI/Flex.svelte';
 	import Grid from '$lib/UI/Grid.svelte';
+	import Text from '$lib/UI/Text.svelte';
 	import { theme } from '$lib/UI/theme';
 	import { objectKeys } from '$lib/utils/object';
 
@@ -13,9 +14,9 @@
 	<title>Home</title>
 </svelte:head>
 
-<section id="colors">
+<Box tag="section" p={16}>
 	<Flex gap={16} align="center">
-		<h3>Palette</h3>
+		<Text tag="h3" fontSize={32}>Palette</Text>
 		<ThemeSwitch />
 	</Flex>
 
@@ -29,7 +30,7 @@
 	</Grid>
 
 	<Box mt={32}>
-		<h3>Colors</h3>
+		<Text tag="h3" fontSize={32}>Colors</Text>
 	</Box>
 
 	<Grid gap={32} templateColumns="repeat(10, 1fr)" mt={16}>
@@ -40,14 +41,4 @@
 			</Flex>
 		{/each}
 	</Grid>
-</section>
-
-<style>
-	section {
-		padding: 1rem;
-	}
-
-	#colors h3 {
-		font-size: 2rem;
-	}
-</style>
+</Box>

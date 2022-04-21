@@ -30,7 +30,7 @@
 </script>
 
 <div
-	class="grid-wrapper"
+	class="wrapper"
 	class:grid={$$props.grid}
 	class:templateColumns={$$props.templateColumns}
 	class:templateRows={$$props.templateRows}
@@ -42,27 +42,27 @@
 </div>
 
 <style>
-	.grid-wrapper {
+	.wrapper {
 		display: contents;
 	}
 
-	.grid-wrapper > :global(div) {
+	.wrapper > :global(*) {
 		display: grid;
 	}
 
-	.grid-wrapper.grid > :global(div) {
+	.wrapper.grid > :global(*) {
 		grid: var(--grid);
 	}
 
-	.grid-wrapper.templateColumns > :global(div) {
+	.wrapper.templateColumns > :global(*) {
 		grid-template-columns: var(--template-columns);
 	}
 
-	.grid-wrapper.templateRows > :global(div) {
+	.wrapper.templateRows > :global(*) {
 		grid-template-rows: var(--template-rows);
 	}
 
-	.grid-wrapper.gap > :global(div) {
+	.wrapper.gap > :global(*) {
 		grid-gap: var(--gap);
 	}
 </style>
