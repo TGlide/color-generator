@@ -1,5 +1,15 @@
 export const theme = {
 	palette: {
+		gray10: 'var(--palette-gray-10)',
+		gray20: 'var(--palette-gray-20)',
+		gray30: 'var(--palette-gray-30)',
+		gray40: 'var(--palette-gray-40)',
+		gray50: 'var(--palette-gray-50)',
+		gray60: 'var(--palette-gray-60)',
+		gray70: 'var(--palette-gray-70)',
+		gray80: 'var(--palette-gray-80)',
+		gray90: 'var(--palette-gray-90)',
+		gray100: 'var(--palette-gray-100)',
 		red10: 'var(--palette-red-10)',
 		red20: 'var(--palette-red-20)',
 		red30: 'var(--palette-red-30)',
