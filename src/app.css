@@ -167,9 +167,26 @@ button {
 		Cantarell, 'Open Sans', 'Helvetica Neue';
 	font-family: var(--font-sans);
 
+	/* ------ */
+	/* Spaces */
+	/* ------ */
+
+	/* Radius */
+	--radii-sm: 0.25rem;
+	--radii-md: 0.5rem;
+	--radii-lg: 1rem;
+	--radii-full: 9999px;
+
 	/* ------- */
 	/* Palette */
 	/* ------- */
+
+	/* Grayscale */
+	--black-hsl: 216, 12.2%, 8%;
+	--black: hsl(var(--black-hsl));
+
+	--white-hsl: 0, 0%, 98%;
+	--white: hsl(var(--white-hsl));
 
 	/* Red */
 	--base-red: 0, 72%;
@@ -242,16 +259,6 @@ button {
 	--bg: hsl(var(--bg-hsl));
 	--primary-hsl: var(--black-hsl);
 	--primary: hsl(var(--primary-hsl));
-
-	/* ------ */
-	/* Spaces */
-	/* ------ */
-
-	/* Radius */
-	--radii-sm: 0.25rem;
-	--radii-md: 0.5rem;
-	--radii-lg: 1rem;
-	--radii-full: 9999px;
 }
 
 [data-theme='dark'] {
@@ -266,127 +273,4 @@ body {
 	background-color: var(--bg);
 	color: var(--primary);
 	margin: 0;
-}
-
-h1 {
-	font-family: var(--font-display);
-	font-size: 4rem;
-	font-weight: 700;
-	line-height: 1.2;
-	margin: 0;
-	padding: 0;
-}
-
-h2 {
-	font-family: var(--font-display);
-	font-size: 3rem;
-	font-weight: 700;
-	line-height: 1.2;
-	margin: 0;
-	padding: 0;
-}
-
-h3 {
-	font-family: var(--font-display);
-	font-size: 2rem;
-	font-weight: 700;
-	line-height: 1.2;
-	margin: 0;
-	padding: 0;
-}
-
-h4 {
-	font-family: var(--font-display);
-	font-size: 1.5rem;
-	font-weight: 300;
-	line-height: 1.2;
-	margin: 0;
-	padding: 0;
-}
-
-h5 {
-	font-family: var(--font-display);
-	font-size: 1.25rem;
-	font-weight: 300;
-	line-height: 1.2;
-	margin: 0;
-	padding: 0;
-}
-
-h6 {
-	font-family: var(--font-display);
-	font-size: 1rem;
-	font-weight: 300;
-	line-height: 1.2;
-	margin: 0;
-	padding: 0;
-}
-
-p {
-	font-family: var(--font-sans);
-	font-size: 1.25rem;
-	font-weight: 400;
-	line-height: 1.5;
-	margin: 0;
-	padding: 0;
-}
-
-/* --------------- */
-/* Utility Classes */
-/* --------------- */
-
-/* General */
-
-.flex {
-	display: flex;
-}
-
-.gap {
-	gap: var(--gap, 1rem);
-}
-
-.flex-row {
-	display: flex;
-	flex-direction: row;
-}
-
-.flex-col {
-	display: flex;
-	flex-direction: column;
-}
-
-.flex-1 {
-	flex: 1;
-}
-
-.container {
-	padding: 1rem 2rem;
-}
-
-/* Fonts */
-
-.ff-mono {
-	font-family: var(--font-mono);
-}
-
-.ff-sans {
-	font-family: var(--font-sans);
-}
-
-.ff-display {
-	font-family: var(--font-display);
-}
-
-/* Spaces */
-
-.flow > * + * {
-	margin-top: var(--flow-space, 1rem);
-}
-
-.ml-auto {
-	margin-left: auto;
-}
-
-.ml-4 {
-	margin-left: 1rem;
 }
