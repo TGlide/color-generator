@@ -20,7 +20,21 @@ export const theme = {
 		blue80: 'var(--palette-blue-80)',
 		blue90: 'var(--palette-blue-90)',
 		blue100: 'var(--palette-blue-100)'
+	},
+	colors: {
+		bg: 'var(--bg)',
+		primary: 'var(--primary)'
 	}
 };
 
 export type Palette = keyof typeof theme['palette'];
+
+export function isPalette(color: string): color is Palette {
+	return Object.keys(theme.palette).includes(color);
+}
+
+export type Color = keyof typeof theme['colors'];
+
+export function isColor(color: string): color is Color {
+	return Object.keys(theme.colors).includes(color);
+}

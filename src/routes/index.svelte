@@ -27,6 +27,19 @@
 			</Flex>
 		{/each}
 	</Grid>
+
+	<Box mt={32}>
+		<h3>Colors</h3>
+	</Box>
+
+	<Grid gap={32} templateColumns="repeat(10, 1fr)" mt={16}>
+		{#each objectKeys(theme.colors) as key}
+			<Flex mt={8} direction="column" gap={6}>
+				<Box bgColor={key} size={64} radius={6} />
+				<span>{key}</span>
+			</Flex>
+		{/each}
+	</Grid>
 </section>
 
 <style>

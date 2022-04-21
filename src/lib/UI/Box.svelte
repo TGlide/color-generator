@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-	import { theme, type Palette } from './theme';
+	import { isColor, theme, type Color, type Palette } from './theme';
 
 	export type BoxProps = {
 		m?: string | number;
@@ -24,8 +24,8 @@
 		h?: string | number;
 		size?: string | number;
 
-		bgColor?: Palette;
-		color?: Palette;
+		bgColor?: Color | Palette;
+		color?: Color | Palette;
 
 		opacity?: number;
 
@@ -57,8 +57,8 @@
 		return cssVar.map((v) => `--${v}: ${parsedValue}`).join(';');
 	};
 
-	export const parseColor = (value: Palette): string => {
-		return theme.palette[value];
+	export const parseColor = (value: Color | Palette): string => {
+		return isColor(value) ? theme.colors[value] : theme.palette[value];
 	};
 </script>
 
