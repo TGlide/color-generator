@@ -1,5 +1,4 @@
 <script context="module" lang="ts">
-	import ThemeSwitch from '$lib/components/ThemeSwitch.svelte';
 	import Box from '$lib/UI/Box.svelte';
 	import Flex from '$lib/UI/Flex.svelte';
 	import Grid from '$lib/UI/Grid.svelte';
@@ -17,7 +16,6 @@
 <Box tag="section" p={16}>
 	<Flex gap={16} align="center">
 		<Text tag="h3" fontSize={32}>Palette</Text>
-		<ThemeSwitch />
 	</Flex>
 
 	<Grid gap={32} templateColumns="repeat(10, 1fr)" mt={16}>
@@ -41,4 +39,18 @@
 			</Flex>
 		{/each}
 	</Grid>
+
+	<a href="/color-gen">Generate colors</a>
 </Box>
+
+<style>
+	a {
+		display: block;
+		margin-top: 4rem;
+		transition: opacity 0.25s ease;
+	}
+
+	a:hover {
+		opacity: 0.75;
+	}
+</style>

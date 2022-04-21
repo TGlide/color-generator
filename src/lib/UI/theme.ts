@@ -19,11 +19,17 @@ export const theme = {
 		blue70: 'var(--palette-blue-70)',
 		blue80: 'var(--palette-blue-80)',
 		blue90: 'var(--palette-blue-90)',
-		blue100: 'var(--palette-blue-100)'
+		blue100: 'var(--palette-blue-100)',
+		white: 'var(--white)',
+		black: 'var(--black)'
 	},
 	colors: {
 		bg: 'var(--bg)',
 		primary: 'var(--primary)'
+	},
+	fontFamilies: {
+		sans: 'var(--font-sans)',
+		mono: 'var(--font-mono)'
 	}
 };
 
@@ -37,4 +43,10 @@ export type Color = keyof typeof theme['colors'];
 
 export function isColor(color: string): color is Color {
 	return Object.keys(theme.colors).includes(color);
+}
+
+export type FontFamily = keyof typeof theme['fontFamilies'];
+
+export function isFontFamily(fontFamily: string): fontFamily is FontFamily {
+	return Object.keys(theme.fontFamilies).includes(fontFamily);
 }

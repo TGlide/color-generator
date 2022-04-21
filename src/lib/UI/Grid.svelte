@@ -1,10 +1,11 @@
 <script lang="ts" context="module">
-	import Box, { parseSpace, type BoxProps } from './Box.svelte';
+	import Box, { parseSpace, parseValue, type BoxProps } from './Box.svelte';
 
 	type GridProps = BoxProps & {
 		grid?: string;
 		templateColumns?: string;
 		templateRows?: string;
+		placeItems?: string;
 		gap?: string | number;
 	};
 </script>
@@ -17,9 +18,10 @@
 			// Style prop
 			props.style ?? undefined,
 			// Grid props
-			props.grid ? `--grid: ${props.grid}` : undefined,
-			props.templateColumns ? `--template-columns: ${props.templateColumns}` : undefined,
-			props.templateRows ? `--template-rows: ${props.templateRows}` : undefined,
+			parseValue(props.grid, 'grid'),
+			parseValue(props.templateColumns, 'template-columns'),
+			parseValue(props.templateRows, 'template-rows'),
+			parseValue(props.placeItems, 'place-items'),
 			parseSpace(props.gap, 'gap')
 		]
 			.filter(Boolean)
@@ -32,9 +34,10 @@
 <div
 	class="wrapper"
 	class:grid={$$props.grid}
-	class:templateColumns={$$props.templateColumns}
-	class:templateRows={$$props.templateRows}
+	class:template-columns={$$props.templateColumns}
+	class:template-rows={$$props.templateRows}
 	class:gap={$$props.gap}
+	class:place-items={$$props.placeItems}
 >
 	<Box {style} {...$$props}>
 		<slot />
@@ -54,15 +57,19 @@
 		grid: var(--grid);
 	}
 
-	.wrapper.templateColumns > :global(*) {
+	.wrapper.template-columns > :global(*) {
 		grid-template-columns: var(--template-columns);
 	}
 
-	.wrapper.templateRows > :global(*) {
+	.wrapper.template-rows > :global(*) {
 		grid-template-rows: var(--template-rows);
 	}
 
 	.wrapper.gap > :global(*) {
 		grid-gap: var(--gap);
+	}
+
+	.wrapper.place-items > :global(*) {
+		place-items: var(--place-items);
 	}
 </style>

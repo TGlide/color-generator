@@ -1,7 +1,12 @@
 <script lang="ts" context="module">
-	import { isColor, theme, type Color, type Palette } from './theme';
+	import { isColor, isPalette, theme, type Color, type Palette } from './theme';
+
+	export type ColorProp = Color | Palette;
 
 	export type BoxProps = {
+		// Style Prop
+		style?: string;
+		// Margin
 		m?: string | number;
 		mt?: string | number;
 		mr?: string | number;
@@ -9,7 +14,7 @@
 		ml?: string | number;
 		mx?: string | number;
 		my?: string | number;
-
+		// Padding
 		p?: string | number;
 		pt?: string | number;
 		pr?: string | number;
@@ -17,25 +22,45 @@
 		pl?: string | number;
 		px?: string | number;
 		py?: string | number;
-
-		radius?: string | number;
-
+		// Width and height
 		w?: string | number;
+		minW?: string | number;
+		maxW?: string | number;
 		h?: string | number;
+		minH?: string | number;
+		maxH?: string | number;
 		size?: string | number;
-
-		bgColor?: Color | Palette;
-		color?: Color | Palette;
-
+		// Border
+		radius?: string | number;
+		borderSize?: string | number;
+		borderColor?: ColorProp;
+		borderStyle?: string;
+		// Colors
+		bgColor?: ColorProp;
+		color?: ColorProp;
+		// Misc.
 		opacity?: number;
-
-		style?: string;
-
+		display?: string;
 		tag?: string;
 	};
 
 	export const pxToRem = (px: number) => {
 		return `${px / 16}rem`;
+	};
+
+	export const parseValue = (
+		value: string | number | undefined,
+		cssVar: string | string[]
+	): string | undefined => {
+		if (value === undefined) {
+			return undefined;
+		}
+
+		if (typeof cssVar === 'string') {
+			return `--${cssVar}: ${value};`;
+		}
+
+		return cssVar.map((v) => `--${v}: ${value}`).join(';');
 	};
 
 	export const parseSpace = (
@@ -53,14 +78,32 @@
 		}
 
 		if (typeof cssVar === 'string') {
-			return `--${cssVar}: ${parsedValue};`;
+			return `--${cssVar}: ${parsedValue}`;
 		}
 
 		return cssVar.map((v) => `--${v}: ${parsedValue}`).join(';');
 	};
 
-	export const parseColor = (value: Color | Palette): string => {
-		return isColor(value) ? theme.colors[value] : theme.palette[value];
+	export const parseColor = (
+		value: ColorProp | string | undefined,
+		cssVar: string | string[]
+	): string | undefined => {
+		if (!value) return undefined;
+
+		let parsedValue = value;
+		if (isColor(value)) {
+			parsedValue = theme.colors[value];
+		}
+
+		if (isPalette(value)) {
+			parsedValue = theme.palette[value];
+		}
+
+		if (typeof cssVar === 'string') {
+			return `--${cssVar}: ${parsedValue}`;
+		}
+
+		return cssVar.map((v) => `--${v}: ${parsedValue}`).join(';');
 	};
 </script>
 
@@ -81,7 +124,6 @@
 			parseSpace(props.ml, 'ml'),
 			parseSpace(props.mx, ['ml', 'mr']),
 			parseSpace(props.my, ['mt', 'mb']),
-
 			// Padding
 			parseSpace(props.p, 'p'),
 			parseSpace(props.pt, 'pt'),
@@ -92,15 +134,23 @@
 			parseSpace(props.py, ['mp', 'pb']),
 			// Width and height
 			parseSpace(props.w, 'w'),
+			parseSpace(props.minW, 'min-w'),
+			parseSpace(props.maxW, 'max-w'),
 			parseSpace(props.h, 'h'),
+			parseSpace(props.minH, 'min-h'),
+			parseSpace(props.maxH, 'max-h'),
 			parseSpace(props.size, ['w', 'h']),
 			// Border
 			parseSpace(props.radius, 'radius'),
+			parseColor(props.borderColor, 'border-color'),
+			parseSpace(props.borderSize, 'border-size'),
+			parseValue(props.borderStyle, 'border-style'),
 			// Colors
-			props.bgColor ? `--bgColor: ${parseColor(props.bgColor)}` : undefined,
-			props.color ? `--color: ${parseColor(props.color)}` : undefined,
-			// Opacity
-			props.opacity ? `--opacity: ${props.opacity}` : undefined
+			parseColor(props.bgColor, 'bg-color'),
+			parseColor(props.color, 'color'),
+			// Misc.
+			parseValue(props.opacity, 'opacity'),
+			parseValue(props.display, 'display')
 		]
 			.filter(Boolean)
 			.join(';');
@@ -127,17 +177,26 @@
 	class:px={$$props.px}
 	class:py={$$props.py}
 	class:radius={$$props.radius}
+	class:border-color={$$props.borderColor}
+	class:border-size={$$props.borderSize}
+	class:border-style={$$props.borderStyle}
 	class:w={$$props.w}
+	class:min-w={$$props.minW}
+	class:max-w={$$props.maxW}
 	class:h={$$props.h}
+	class:min-h={$$props.minH}
+	class:max-h={$$props.maxH}
 	class:size={$$props.size}
-	class:bgColor={$$props.bgColor}
+	class:bg-color={$$props.bgColor}
 	class:color={$$props.color}
 	class:opacity={$$props.opacity}
+	class:display={$$props.display}
 >
 	<slot />
 </svelte:element>
 
 <style>
+	/* Margin */
 	.m {
 		margin: var(--m, 0);
 	}
@@ -160,6 +219,7 @@
 		margin-left: var(--ml, 0);
 	}
 
+	/* Padding */
 	.p {
 		padding: var(--p, 0);
 	}
@@ -184,9 +244,18 @@
 		padding-left: var(--pl, 0);
 	}
 
+	/* Width & Height */
 	.w,
 	.size {
 		width: var(--w);
+	}
+
+	.min-w {
+		min-width: var(--min-w);
+	}
+
+	.max-w {
+		max-width: var(--maxW);
 	}
 
 	.h,
@@ -194,19 +263,46 @@
 		height: var(--h);
 	}
 
+	.min-h {
+		min-height: var(--min-h);
+	}
+
+	.max-h {
+		max-height: var(--max-h);
+	}
+
+	/* Border */
 	.radius {
 		border-radius: var(--radius);
 	}
 
-	.bgColor {
-		background-color: var(--bgColor);
+	.border-color {
+		border-color: var(--border-color);
+	}
+
+	.border-size {
+		border-width: var(--border-size);
+	}
+
+	.border-style {
+		border-style: var(--border-style);
+	}
+
+	/* Colors */
+	.bg-color {
+		background-color: var(--bg-color);
 	}
 
 	.color {
 		color: var(--color);
 	}
 
+	/* Misc. */
 	.opacity {
 		opacity: var(--opacity);
+	}
+
+	.display {
+		display: var(--display);
 	}
 </style>

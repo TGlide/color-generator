@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-	import Box, { parseSpace, type BoxProps } from './Box.svelte';
+	import Box, { parseSpace, parseValue, type BoxProps } from './Box.svelte';
 
 	type FlexProps = BoxProps & {
 		direction?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
@@ -18,10 +18,11 @@
 			// Style prop
 			props.style ?? undefined,
 			// Flexbox props
-			props.direction ? `--direction: ${props.direction}` : undefined,
-			props.wrap ? `--wrap: ${props.wrap}` : undefined,
-			props.justify ? `--justify: ${props.justify}` : undefined,
-			props.align ? `--align: ${props.align}` : undefined,
+			parseValue(props.direction, 'direction'),
+			parseValue(props.wrap, 'wrap'),
+			parseValue(props.justify, 'justify'),
+			parseValue(props.align, 'align'),
+			parseSpace(props.gap, 'gap'),
 			parseSpace(props.gap, 'gap')
 		]
 			.filter(Boolean)

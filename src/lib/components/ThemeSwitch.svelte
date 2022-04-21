@@ -33,6 +33,10 @@
 	}
 
 	button {
+		position: fixed;
+		right: 1rem;
+		top: 1rem;
+
 		background-color: var(--palette-blue-60);
 		border-radius: 0.25rem;
 		cursor: pointer;
