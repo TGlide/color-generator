@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { fade } from 'svelte/transition';
 
 	let iconHidden = true;
 	let isDark = true;
@@ -20,14 +19,27 @@
 </script>
 
 <button on:click={switchTheme}>
-	{#if !iconHidden}
-		<div transition:fade>
-			<span>{isDark ? 'dark' : 'light'}</span>
-		</div>
-	{/if}
+	<span id="light">light</span>
+	<span id="dark">dark</span>
 </button>
 
 <style>
+	#light {
+		display: block;
+	}
+
+	#dark {
+		display: none;
+	}
+
+	:global([data-theme='dark']) #light {
+		display: none;
+	}
+
+	:global([data-theme='dark']) #dark {
+		display: block;
+	}
+
 	button {
 		background-color: var(--palette-blue-60);
 		border-radius: 0.25rem;

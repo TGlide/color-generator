@@ -1,0 +1,54 @@
+{
+	"TS": {
+		"scope": "svelte",
+		"prefix": "ts",
+		"body": [
+			"<script lang=\"ts\">",
+			"\t$1",
+			"</script>"
+		],
+		"description": "TS script tag"
+	},
+	"Module": {
+		"scope": "svelte",
+		"prefix": "module",
+		"body": [
+			"<script lang=\"ts\" context=\"module\">",
+			"\t$1",
+			"</script>"
+		],
+		"description": "TS module script tag"
+	},
+	"SCSS": {
+		"scope": "svelte",
+		"prefix": "scss",
+		"body": [
+			"<style lang=\"scss\">",
+			"\t$1",
+			"</style>"
+		],
+		"description": "SCSS style tag"
+	},
+	"restProps": {
+		"scope": "svelte",
+		"prefix": "rest",
+		"body": [
+			"{...\\$\\$restProps}"
+		],
+		"description": "spread rest props"
+	},
+	"CSS theming": {
+		"scope": "svelte, scss, css, sass",
+		"prefix": "theme",
+		"body": [
+			"$1 {",
+			"\t$2",
+			"}",
+			"",
+			":global([data-theme='dark']) $1 {",
+			"\t$2",
+			"}"
+		],
+		"description": "dark mode"
+	}
+}
