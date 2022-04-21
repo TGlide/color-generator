@@ -19,25 +19,17 @@
 </script>
 
 <button on:click={switchTheme}>
-	<span id="light">light</span>
-	<span id="dark">dark</span>
+	<span />
 </button>
 
 <style>
-	#light {
+	span:before {
+		content: 'light';
 		display: block;
 	}
 
-	#dark {
-		display: none;
-	}
-
-	:global([data-theme='dark']) #light {
-		display: none;
-	}
-
-	:global([data-theme='dark']) #dark {
-		display: block;
+	:global([data-theme='dark']) span:before {
+		content: 'dark';
 	}
 
 	button {
