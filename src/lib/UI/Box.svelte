@@ -105,32 +105,103 @@
 	$: style = getStyle($$props);
 </script>
 
-<div {style}>
+<div
+	{style}
+	class:m={$$props.m}
+	class:mt={$$props.mt}
+	class:mr={$$props.mr}
+	class:mb={$$props.mb}
+	class:ml={$$props.ml}
+	class:mx={$$props.mx}
+	class:my={$$props.my}
+	class:p={$$props.p}
+	class:pt={$$props.pt}
+	class:pr={$$props.pr}
+	class:pb={$$props.pb}
+	class:pl={$$props.pl}
+	class:px={$$props.px}
+	class:py={$$props.py}
+	class:radius={$$props.radius}
+	class:w={$$props.w}
+	class:h={$$props.h}
+	class:size={$$props.size}
+	class:bgColor={$$props.bgColor}
+	class:color={$$props.color}
+	class:opacity={$$props.opacity}
+>
 	<slot />
 </div>
 
 <style>
-	div {
+	.m {
 		margin: var(--m, 0);
+	}
+	.mt,
+	.my {
 		margin-top: var(--mt, 0);
+	}
+	.mr,
+	.mx {
 		margin-right: var(--mr, 0);
+	}
+
+	.mb,
+	.my {
 		margin-bottom: var(--mb, 0);
+	}
+
+	.ml,
+	.mx {
 		margin-left: var(--ml, 0);
+	}
 
+	.p {
 		padding: var(--p, 0);
+	}
+
+	.pt,
+	.py {
 		padding-top: var(--pt, 0);
+	}
+
+	.pr,
+	.px {
 		padding-right: var(--pr, 0);
+	}
+
+	.pb,
+	.py {
 		padding-bottom: var(--pb, 0);
+	}
+
+	.pl,
+	.px {
 		padding-left: var(--pl, 0);
+	}
 
+	.w,
+	.size {
 		width: var(--w);
+	}
+
+	.h,
+	.size {
 		height: var(--h);
+	}
 
+	.radius {
 		border-radius: var(--radius);
+	}
 
+	.bgColor {
 		background-color: var(--bgColor);
-		color: var(--color);
+	}
 
+	.color {
+		color: var(--color);
+	}
+
+	.opacity {
 		opacity: var(--opacity);
 	}
 </style>

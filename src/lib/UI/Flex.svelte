@@ -31,7 +31,14 @@
 	$: style = getStyle($$props);
 </script>
 
-<div class="flex-wrapper">
+<div
+	class="flex-wrapper"
+	class:direction={$$props.direction}
+	class:wrap={$$props.wrap}
+	class:justify={$$props.justify}
+	class:align={$$props.align}
+	class:gap={$$props.gap}
+>
 	<Box {style} {...$$props}>
 		<slot />
 	</Box>
@@ -44,10 +51,25 @@
 
 	.flex-wrapper > :global(div) {
 		display: flex;
+	}
+
+	.flex-wrapper.direction > :global(div) {
 		flex-direction: var(--direction);
+	}
+
+	.flex-wrapper.wrap > :global(div) {
 		flex-wrap: var(--wrap);
+	}
+
+	.flex-wrapper.justify > :global(div) {
 		justify-content: var(--justify);
+	}
+
+	.flex-wrapper.align > :global(div) {
 		align-items: var(--align);
+	}
+
+	.flex-wrapper.gap > :global(div) {
 		gap: var(--gap);
 	}
 </style>

@@ -29,7 +29,13 @@
 	$: style = getStyle($$props);
 </script>
 
-<div class="grid-wrapper">
+<div
+	class="grid-wrapper"
+	class:grid={$$props.grid}
+	class:templateColumns={$$props.templateColumns}
+	class:templateRows={$$props.templateRows}
+	class:gap={$$props.gap}
+>
 	<Box {style} {...$$props}>
 		<slot />
 	</Box>
@@ -42,9 +48,21 @@
 
 	.grid-wrapper > :global(div) {
 		display: grid;
+	}
+
+	.grid-wrapper.grid > :global(div) {
 		grid: var(--grid);
+	}
+
+	.grid-wrapper.templateColumns > :global(div) {
 		grid-template-columns: var(--template-columns);
+	}
+
+	.grid-wrapper.templateRows > :global(div) {
 		grid-template-rows: var(--template-rows);
-		gap: var(--gap);
+	}
+
+	.grid-wrapper.gap > :global(div) {
+		grid-gap: var(--gap);
 	}
 </style>
