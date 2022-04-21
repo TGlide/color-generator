@@ -39,38 +39,47 @@
 	<title>Color Generator</title>
 </svelte:head>
 
-<Flex justify="center" align="center" minH="100vh" p={16}>
-	<Box>
-		<a href="/">{'<'} Back</a>
-		<Text fontWeight={600} fontSize={32} mt={24}>Color Generator</Text>
+<section class="themed">
+	<Flex justify="center" align="center" minH="100vh" p={16}>
+		<Box>
+			<a href="/">{'<'} Back</a>
+			<Text fontWeight={600} fontSize={32} mt={24}>Color Generator</Text>
 
-		<Flex minW="50vh" direction="column" gap={16} mt={32}>
-			<Box tag="label" display="block">
-				<Text fontSize={18} mb={8}>Name</Text>
-				<input bind:value={name} />
-			</Box>
-			<Box tag="label" display="block">
-				<Text fontSize={18} mb={8}>Color</Text>
-				<input bind:value={color} />
-				{#if color && parsedColor === null}
-					<Text color="red50" fontSize={12} mt={4}>Invalid color</Text>
-				{/if}
-			</Box>
-		</Flex>
-
-		{#if cssVars !== null}
-			<Flex direction="column" gap={6} mt={32}>
-				{#each Object.entries(cssVars) as [key, value]}
-					<Text fontFamily="mono">
-						{key}:<Text tag="span" opacity={0.5}>&nbsp;{value};</Text>
-					</Text>
-				{/each}
+			<Flex minW="50vh" direction="column" gap={16} mt={32}>
+				<Box tag="label" display="block">
+					<Text fontSize={18} mb={8}>Name</Text>
+					<input bind:value={name} />
+				</Box>
+				<Box tag="label" display="block">
+					<Text fontSize={18} mb={8}>Color</Text>
+					<input bind:value={color} />
+					{#if color && parsedColor === null}
+						<Text color="red50" fontSize={12} mt={4}>Invalid color</Text>
+					{/if}
+				</Box>
 			</Flex>
-		{/if}
-	</Box>
-</Flex>
+
+			{#if cssVars !== null}
+				<Flex direction="column" gap={6} mt={32}>
+					{#each Object.entries(cssVars) as [key, value]}
+						<Text fontFamily="mono">
+							{key}:<Text tag="span" opacity={0.5}>&nbsp;{value};</Text>
+						</Text>
+					{/each}
+				</Flex>
+			{/if}
+		</Box>
+	</Flex>
+</section>
 
 <style>
+	section.themed {
+		--input-bg: var(--palette-gray-80);
+	}
+
+	:global([data-theme='dark']) section.themed {
+		--input-bg: var(--palette-gray-20);
+	}
 	a {
 		transition: opacity 0.25s ease;
 	}
@@ -82,7 +91,7 @@
 	input {
 		width: 100%;
 
-		background-color: #4b5563;
+		background-color: var(--input-bg);
 		border-radius: 0.25rem;
 		padding: 0.5rem 1rem;
 		font-size: 1rem;
