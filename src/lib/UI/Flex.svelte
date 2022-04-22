@@ -39,8 +39,9 @@
 	class:justify={$$props.justify}
 	class:align={$$props.align}
 	class:gap={$$props.gap}
+	{style}
 >
-	<Box {style} {...$$props}>
+	<Box {...$$props}>
 		<slot />
 	</Box>
 </div>

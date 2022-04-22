@@ -62,7 +62,7 @@
 			<Flex direction="column" gap={6} mt={32}>
 				{#each Object.entries(cssVars) as [key, value]}
 					<Text fontFamily="mono">
-						{key}:<span class="alpha">&nbsp;{value};</span>
+						{key}:<Text tag="span" opacity={0.5}>&nbsp;{value};</Text>
 					</Text>
 				{/each}
 			</Flex>
@@ -93,9 +93,5 @@
 		border-radius: 0.25rem;
 		padding: 0.5rem 1rem;
 		font-size: 1rem;
-	}
-
-	.alpha {
-		opacity: 0.5;
 	}
 </style>

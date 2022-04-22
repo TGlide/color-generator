@@ -52,7 +52,8 @@
 <script lang="ts">
 	interface $$Props extends TextProps {}
 
-	export let tag: $$Props['tag'] = 'p';
+	// Due to some svelte:element bugs causing jumping around on 1st render, we set the tag as div instead of p.
+	export let tag: $$Props['tag'] = 'div';
 
 	const getStyle = (props: TextProps) => {
 		return [
@@ -83,8 +84,9 @@
 	class:letter-spacing={$$props.letterSpacing}
 	class:text-transform={$$props.textTransform}
 	class:font-family={$$props.fontFamily}
+	{style}
 >
-	<Box {style} {tag} {...$$restProps}>
+	<Box {tag} {...$$restProps}>
 		<slot />
 	</Box>
 </div>

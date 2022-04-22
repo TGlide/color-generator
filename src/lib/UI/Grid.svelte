@@ -38,8 +38,9 @@
 	class:template-rows={$$props.templateRows}
 	class:gap={$$props.gap}
 	class:place-items={$$props.placeItems}
+	{style}
 >
-	<Box {style} {...$$props}>
+	<Box {...$$props}>
 		<slot />
 	</Box>
 </div>
