@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
 	import Box, { parseSpace, parseValue, type BoxProps } from './Box.svelte';
 
-	type FlexProps = BoxProps & {
+	export type FlexProps = BoxProps & {
 		direction?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
 		wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
 		justify?: 'start' | 'end' | 'center' | 'between' | 'around';

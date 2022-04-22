@@ -41,6 +41,7 @@
 		// Misc.
 		opacity?: number;
 		display?: string;
+		textAlign?: string;
 		tag?: string;
 	};
 
@@ -150,7 +151,8 @@
 			parseColor(props.color, 'color'),
 			// Misc.
 			parseValue(props.opacity, 'opacity'),
-			parseValue(props.display, 'display')
+			parseValue(props.display, 'display'),
+			parseValue(props.textAlign, 'text-align')
 		]
 			.filter(Boolean)
 			.join(';');
@@ -191,6 +193,8 @@
 	class:color={$$props.color}
 	class:opacity={$$props.opacity}
 	class:display={$$props.display}
+	class:text-align={$$props.textAlign}
+	{...$$restProps}
 >
 	<slot />
 </svelte:element>
@@ -304,5 +308,9 @@
 
 	.display {
 		display: var(--display);
+	}
+
+	.text-align {
+		text-align: var(--text-align);
 	}
 </style>

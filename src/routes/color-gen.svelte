@@ -5,6 +5,7 @@
 <script lang="ts">
 	import Box from '$lib/UI/Box.svelte';
 	import Flex from '$lib/UI/Flex.svelte';
+	import Link from '$lib/UI/Link.svelte';
 	import Text from '$lib/UI/Text.svelte';
 	import { getHSLA } from '$lib/utils/colors';
 
@@ -40,9 +41,9 @@
 </svelte:head>
 
 <section class="themed">
-	<Flex justify="center" align="center" minH="100vh" p={16}>
-		<Box>
-			<a href="/">{'<'} Back</a>
+	<Flex justify="center" align="center" p={16} mt={128}>
+		<Box textAlign="left">
+			<Link href="/">{'<'} Back</Link>
 			<Text fontWeight={600} fontSize={32} mt={24}>Color Generator</Text>
 
 			<Flex minW="50vh" direction="column" gap={16} mt={32}>
@@ -78,14 +79,6 @@
 	:global([data-theme='dark']) section.themed {
 		--input-bg: var(--palette-gray-20);
 	}
-	a {
-		transition: opacity 0.25s ease;
-	}
-
-	a:hover {
-		opacity: 0.75;
-	}
-
 	input {
 		width: 100%;
 

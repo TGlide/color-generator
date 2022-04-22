@@ -2,8 +2,7 @@
 	import Box, { parseSpace, parseValue, type BoxProps } from './Box.svelte';
 	import { isFontFamily, theme, type FontFamily } from './theme';
 
-	type TextProps = BoxProps & {
-		align?: 'left' | 'center' | 'right';
+	export type TextProps = BoxProps & {
 		fontSize?: string | number;
 		fontFamily?: FontFamily;
 		fontWeight?:
@@ -28,6 +27,7 @@
 		lineHeight?: string | number;
 		letterSpacing?: string | number;
 		textTransform?: 'uppercase' | 'lowercase' | 'capitalize';
+		textDecoration?: 'none' | 'underline' | 'line-through';
 	};
 
 	export const parseFontFamily = (
@@ -60,9 +60,9 @@
 			// Style prop
 			props.style ?? undefined,
 			// Text props
-			parseValue(props.align, 'align'),
 			parseValue(props.textTransform, 'text-transform'),
 			parseValue(props.fontWeight, 'font-weight'),
+			parseValue(props.textDecoration, 'text-decoration'),
 			parseSpace(props.fontSize, 'font-size'),
 			parseSpace(props.lineHeight, 'line-height'),
 			parseSpace(props.letterSpacing, 'letter-spacing'),
@@ -77,13 +77,13 @@
 
 <div
 	class="wrapper"
-	class:align={$$props.align}
 	class:font-size={$$props.fontSize}
 	class:font-weight={$$props.fontWeight}
 	class:line-height={$$props.lineHeight}
 	class:letter-spacing={$$props.letterSpacing}
 	class:text-transform={$$props.textTransform}
 	class:font-family={$$props.fontFamily}
+	class:text-decoration={$$props.textDecoration}
 	{style}
 >
 	<Box {tag} {...$$restProps}>
@@ -94,10 +94,6 @@
 <style>
 	.wrapper {
 		display: contents;
-	}
-
-	.wrapper.align > :global(*) {
-		align-self: var(--align);
 	}
 
 	.wrapper.font-size > :global(*) {
@@ -122,5 +118,9 @@
 
 	.wrapper.font-family > :global(*) {
 		font-family: var(--font-family);
+	}
+
+	.wrapper.text-decoration > :global(*) {
+		text-decoration: var(--text-decoration);
 	}
 </style>

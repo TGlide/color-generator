@@ -13,7 +13,7 @@
 	<title>Home</title>
 </svelte:head>
 
-<Box tag="section" p={16}>
+<Box tag="section">
 	<Flex gap={16} align="center">
 		<Text tag="h3" fontSize={32}>Palette</Text>
 	</Flex>
@@ -39,18 +39,4 @@
 			</Flex>
 		{/each}
 	</Grid>
-
-	<a href="/color-gen">Generate colors</a>
 </Box>
-
-<style>
-	a {
-		display: block;
-		margin-top: 4rem;
-		transition: opacity 0.25s ease;
-	}
-
-	a:hover {
-		opacity: 0.75;
-	}
-</style>
