@@ -1,3 +1,3 @@
-# svelte-css-ui-prototype 
+# Color Generator
 
-Prototype of a UI library in svelte.
+Simple color generator util for hsl css vars. Built with Svelte.

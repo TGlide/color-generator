@@ -6,6 +6,5 @@
 </script>
 
 <Flex tag="nav" gap={16} {...$$restProps}>
-	<Link href="/">📚 UI Library</Link>
-	<Link href="/color-gen">🎨 Generate colors</Link>
+	<Link href="/">🎨 Generate colors</Link>
 </Flex>
