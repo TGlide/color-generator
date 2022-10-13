@@ -5,7 +5,6 @@
 <script lang="ts">
 	import Box from '$lib/UI/Box.svelte';
 	import Flex from '$lib/UI/Flex.svelte';
-	import Link from '$lib/UI/Link.svelte';
 	import Text from '$lib/UI/Text.svelte';
 	import { getHSLA } from '$lib/utils/colors';
 
